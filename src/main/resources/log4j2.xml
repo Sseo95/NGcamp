@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<!-- Appender, Layout 설정 -->
+	<Appenders>
+
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%C(%d) [%p] : %m%n" />
+		</Console>
+
+		<File name="file" fileName="logger.log">
+			<PatternLayout pattern="%d %5p [%c] %m%n" />
+		</File>
+
+		<RollingFile name="rollingFile"
+			fileName="dailyRollingSample.log"
+			filePattern="dailyRollingSample.log.%d{yyyy-MM-dd-HH-mm-ss}">
+			<PatternLayout pattern="%C [%p] : %m%n" />
+			<Policies>
+				<!-- interval(default 1)이므로 1초 간격으로 rolling 수행 -->
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+
+
+	</Appenders>
+	<!-- 로그레벨은 TRACE > DEBUG > INFO > WARN > ERROR > FATAL 순 입니다. # Log Level 
+		# TRACE : 추적 레벨은 Debug보다 좀더 상세한 정보를 나타냄 # DEBUG : 프로그램을 디버깅하기 위한 정보 지정 # 
+		INFO : 상태변경과 같은 정보성 메시지를 나타냄 # WARN : 처리 가능한 문제, 향후 시스템 에러의 원인이 될 수 있는 경고성 
+		메시지를 나타냄 # ERROR : 요청을 처리하는 중 문제가 발생한 경우 # FATAL : 아주 심각한 에러가 발생한 상태, 시스템적으로 
+		심각한 문제가 발생해서 어플리케이션 작동이 불가능할 경우 -->
+	<!-- Logger 설정 -->
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef ref="console" />
+			<!-- 
+			<AppenderRef ref="file" />
+			<AppenderRef ref="rollingFile" />
+			 -->
+		</Root>
+	</Loggers>
+
+</Configuration>
